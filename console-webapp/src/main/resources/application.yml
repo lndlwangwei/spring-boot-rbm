@@ -8,6 +8,4 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-  jooq:
-    sql-dialect: mysql
 

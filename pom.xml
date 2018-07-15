@@ -11,12 +11,12 @@
     <name>spring-boot-rbm</name>
     <description>Demo project for Spring Boot</description>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+    <!--<parent>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+        <!--<version>2.0.3.RELEASE</version>-->
+        <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+    <!--</parent>-->
     <modules>
         <module>console-webapp</module>
         <module>common</module>
@@ -27,12 +27,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceVersion>1.8</project.build.sourceVersion>
+        <project.build.targetVersion>1.8</project.build.targetVersion>
         <java.version>1.8</java.version>
         <xkw.version>1.0-SNAPSHOT</xkw.version>
         <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
         <spring.version>5.0.7.RELEASE</spring.version>
         <shiro.version>1.4.0</shiro.version>
         <spring-boot-shiro.version>1.4.0</spring-boot-shiro.version>
+        <mysql-connector.version>5.1.39</mysql-connector.version>
     </properties>
 
     <dependencyManagement>
@@ -52,6 +55,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
 
             <dependency>
@@ -74,6 +78,18 @@
             </dependency>
 
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
@@ -87,8 +103,21 @@
 
             <dependency>
                 <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
                 <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <scope>runtime</scope>
+                <version>${mysql-connector.version}</version>
             </dependency>
 
             <!--<dependency>-->
@@ -106,14 +135,14 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 
     <repositories>
         <repository>
@@ -130,5 +159,24 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <source>${project.build.sourceVersion}</source>
+                        <target>${project.build.targetVersion}</target>
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                        <!--<compilerArgument>-Xlint:unchecked</compilerArgument>-->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
